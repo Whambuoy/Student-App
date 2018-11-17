@@ -75,4 +75,8 @@ public class User extends Model {
     public static List<User>getAllLocations(){
         return new Select().from(User.class).execute();
     }
+
+    public User(){
+        super();
+    }
 }

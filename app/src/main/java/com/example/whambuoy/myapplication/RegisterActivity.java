@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.activeandroid.query.Select;
 import com.example.whambuoy.myapplication.models.User;
 
+import java.util.List;
+
 public class RegisterActivity extends AppCompatActivity {
 
     //@BindView(R.id.editEmail)
@@ -55,17 +57,18 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
         } else {
 
-            User user = new User(fullname,phone, "", email );
+            User user = new User(fullname,phone, password, email );
             user.save();
 
-//            Toast.makeText(this, "okay!", Toast.LENGTH_SHORT).show();
-//            User user1 =  new Select().from(User.class).where("fullname = ?",fullname).executeSingle();
-//            if(user1 != null){
-//                Log.d("User found: ",user.getEmail());
-//            }
+            User user1 =  new Select().from(User.class).where("fullname = ?",fullname).executeSingle();
+            if(user1 != null){
+                Log.d("User found: ",user.getEmail());
+                Toast.makeText(this, "Saved, "+user1.getEmail(), Toast.LENGTH_SHORT).show();
+
+            }
         }
 
-        //List<User> storedUser = User.getAllLocations();
+        List<User> storedUser = User.getAllLocations();
         //Log.d("EA", "All done!");
     }
 }
