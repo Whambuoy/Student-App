@@ -2,28 +2,37 @@ package com.example.whambuoy.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.activeandroid.query.Select;
+import com.example.whambuoy.myapplication.models.User;
 
 public class RegisterActivity extends AppCompatActivity {
 
     //@BindView(R.id.editEmail)
     //EditText editEmail;
 
-    EditText editEmail = (EditText) findViewById(R.id.editEmail);
-    EditText editFullName = (EditText) findViewById(R.id.editFullName);
-    EditText editPassword = (EditText) findViewById(R.id.editPhone);
-    EditText editPhone = (EditText) findViewById(R.id.editPassword);
-    Button btnSignUp = (Button) findViewById(R.id.btnSignUp);
+    EditText editEmail;
+    EditText editFullName;
+    EditText editPassword;
+    EditText editPhone;
+    Button btnSignUp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         //ButterKnife.bind(this)
 
-
+        editEmail = (EditText) findViewById(R.id.editEmail);
+        editFullName = (EditText) findViewById(R.id.editFullName);
+        editPassword = (EditText) findViewById(R.id.editPhone);
+        editPhone = (EditText) findViewById(R.id.editPassword);
+        btnSignUp = (Button) findViewById(R.id.btnSignUp);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +55,17 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
         } else {
 
+            User user = new User(fullname,phone, "", email );
+            user.save();
+
+//            Toast.makeText(this, "okay!", Toast.LENGTH_SHORT).show();
+//            User user1 =  new Select().from(User.class).where("fullname = ?",fullname).executeSingle();
+//            if(user1 != null){
+//                Log.d("User found: ",user.getEmail());
+//            }
         }
 
+        //List<User> storedUser = User.getAllLocations();
+        //Log.d("EA", "All done!");
     }
 }

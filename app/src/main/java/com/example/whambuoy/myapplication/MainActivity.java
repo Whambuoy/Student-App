@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.activeandroid.ActiveAndroid;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -37,5 +39,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        //Create database file if doesn't exist and if it exists it will load it into memory
+        ActiveAndroid.initialize(this);
     }
 }
