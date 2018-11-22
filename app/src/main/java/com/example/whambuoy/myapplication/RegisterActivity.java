@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
         } else {
 
-            User user = new User(fullname,phone, password, email );
+            User user = new User(fullname,phone, password, email);
             user.save();
 
             User user1 =  new Select().from(User.class).where("fullname = ?",fullname).executeSingle();

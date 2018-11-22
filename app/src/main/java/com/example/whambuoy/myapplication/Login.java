@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.activeandroid.query.Select;
+import com.example.whambuoy.myapplication.models.User;
+
 public class Login extends AppCompatActivity {
 
     EditText editFullName;
@@ -38,6 +41,14 @@ public class Login extends AppCompatActivity {
             Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
         }
         else{
+            User login =  new Select().from(User.class).where("fullname = ?",fullname)
+                    .where("password = ?",password).executeSingle();
+            if(login != null){
+
+                Toast.makeText(this, "Good!", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this,"Incorrect username or password", Toast.LENGTH_SHORT).show();
+            }
 
         }
     }

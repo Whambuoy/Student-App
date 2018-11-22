@@ -57,7 +57,7 @@ public class User extends Model {
 
 
     //email
-    @Column(name = "Name")
+    @Column(name = "email")
     private String email;
 
     public String getEmail() {
